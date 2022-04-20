@@ -1,12 +1,25 @@
 import { Component } from "react";
+import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Main from "./components/Main";
+import store from "./store/store";
+import { loadUser } from "./store/actions/authActions";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
   render() {
     return (
-      <div className="App">
-        <h1>Hello everyone!</h1>
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
