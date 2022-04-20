@@ -11,7 +11,7 @@ import { returnErrors } from "./errorActions";
 export const getItems = () => (dispatch) => {
   dispatch(setItemsLoading());
   axios
-    .get("/api/items")
+    .get("http://localhost:4000/api/items")
     .then((res) =>
       dispatch({
         type: GET_ITEMS,
@@ -25,7 +25,7 @@ export const getItems = () => (dispatch) => {
 
 export const addItem = (item) => (dispatch) => {
   axios
-    .post("/api/items", item)
+    .post("http://localhost:4000/api/items", item)
     .then((res) =>
       dispatch({
         type: ADD_ITEM,
@@ -39,7 +39,7 @@ export const addItem = (item) => (dispatch) => {
 
 export const deleteItem = (id) => (dispatch) => {
   axios
-    .delete(`/api/items/${id}`)
+    .delete(`http://localhost:4000/api/items/${id}`)
     .then((res) =>
       dispatch({
         type: DELETE_ITEM,
@@ -53,7 +53,7 @@ export const deleteItem = (id) => (dispatch) => {
 
 export const updateItem = (id, item) => (dispatch) => {
   axios
-    .put(`/api/items/${id}`, item)
+    .put(`http://localhost:4000/api/items/${id}`, item)
     .then((res) =>
       dispatch({
         type: UPDATE_ITEM,
