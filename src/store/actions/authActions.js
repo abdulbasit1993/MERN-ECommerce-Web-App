@@ -10,13 +10,14 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
 } from "./types";
+import { API_URL } from "../../config/apiURL";
 
 export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("http://localhost:4000/api/user", tokenConfig(getState))
+    .get(`${API_URL}/api/user`, tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: USER_LOADED,
@@ -45,7 +46,7 @@ export const register =
     const body = JSON.stringify({ name, email, password });
 
     axios
-      .post("http://localhost:4000/api/register", body, config)
+      .post(`${API_URL}/api/register`, body, config)
       .then((res) =>
         dispatch({
           type: REGISTER_SUCCESS,
@@ -74,7 +75,7 @@ export const login =
     const body = JSON.stringify({ email, password });
 
     axios
-      .post("http://localhost:4000/api/login", body, config)
+      .post(`${API_URL}/api/login`, body, config)
       .then((res) =>
         dispatch({
           type: LOGIN_SUCCESS,

@@ -7,11 +7,12 @@ import {
   ITEMS_LOADING,
 } from "./types";
 import { returnErrors } from "./errorActions";
+import { API_URL } from "../../config/apiURL";
 
 export const getItems = () => (dispatch) => {
   dispatch(setItemsLoading());
   axios
-    .get("http://localhost:4000/api/items")
+    .get(`${API_URL}/api/items`)
     .then((res) =>
       dispatch({
         type: GET_ITEMS,
@@ -25,7 +26,7 @@ export const getItems = () => (dispatch) => {
 
 export const addItem = (item) => (dispatch) => {
   axios
-    .post("http://localhost:4000/api/items", item)
+    .post(`${API_URL}/api/items`, item)
     .then((res) =>
       dispatch({
         type: ADD_ITEM,
@@ -39,7 +40,7 @@ export const addItem = (item) => (dispatch) => {
 
 export const deleteItem = (id) => (dispatch) => {
   axios
-    .delete(`http://localhost:4000/api/items/${id}`)
+    .delete(`${API_URL}/api/items/${id}`)
     .then((res) =>
       dispatch({
         type: DELETE_ITEM,
@@ -53,7 +54,7 @@ export const deleteItem = (id) => (dispatch) => {
 
 export const updateItem = (id, item) => (dispatch) => {
   axios
-    .put(`http://localhost:4000/api/items/${id}`, item)
+    .put(`${API_URL}/api/items/${id}`, item)
     .then((res) =>
       dispatch({
         type: UPDATE_ITEM,

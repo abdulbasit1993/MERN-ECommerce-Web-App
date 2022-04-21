@@ -1,11 +1,12 @@
 import axios from "axios";
 import { returnErrors } from "./errorActions";
 import { GET_ORDERS, CHECKOUT, ORDERS_LOADING } from "./types";
+import { API_URL } from "../../config/apiURL";
 
 export const getOrders = (id) => (dispatch) => {
   dispatch(setOrdersLoading());
   axios
-    .get(`http://localhost:4000/api/order/${id}`)
+    .get(`${API_URL}/api/order/${id}`)
     .then((res) =>
       dispatch({
         type: GET_ORDERS,
@@ -19,7 +20,7 @@ export const getOrders = (id) => (dispatch) => {
 
 export const checkout = (id, source) => (dispatch) => {
   axios
-    .post(`http://localhost:4000/api/order/${id}`, { source })
+    .post(`${API_URL}/api/order/${id}`, { source })
     .then((res) =>
       dispatch({
         type: CHECKOUT,
